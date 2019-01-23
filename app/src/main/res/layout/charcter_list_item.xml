@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dip"
+    android:id="@+id/list_item"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="195dip"
+        android:id="@+id/character_image"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+
+        android:src="@mipmap/ic_launcher"/>
+    <TextView
+        android:layout_width="100dip"
+        android:layout_height="42dip"
+        android:id="@+id/character_name"
+        android:text="Apdallah"
+        android:gravity="center"
+        android:textColor="#000"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="16dip"
+         android:layout_marginLeft="26dip"
+        android:padding="10dip"
+        android:background="@drawable/bg_cell_title"
+         />
+
+</FrameLayout>

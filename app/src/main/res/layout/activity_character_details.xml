@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".Views.FragmentCharacterDetails">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/cover_photo"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:text="Name"
+            android:textColor="#DB3C3C"
+            android:layout_marginTop="10dip"
+            android:layout_marginLeft="10dip"
+             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:id="@+id/character_name"
+            android:layout_marginTop="5dip"
+            android:text="AIM"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dip"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:text="Description"
+            android:textColor="#bc1f1f"
+            android:layout_marginTop="10dip"
+            android:layout_marginLeft="10dip"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:id="@+id/character_description"
+            android:layout_marginTop="5dip"
+            android:text="Description dafsdg gsdga"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dip"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:text="Comics"
+            android:textColor="#bc1f1f"
+            android:layout_marginTop="16dip"
+            android:layout_marginLeft="10dip"
+            />
+                <com.apdallahy3.marvelcharcters.Views.HorizontalListView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:widget="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dip"
+                    android:divider="@color/colorAccent"
+                    widget:dividerWidth="2dp"
+                     android:id="@+id/comics_list_view"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="10dip"
+            android:layout_marginTop="16dip"
+            android:layout_weight="0.1"
+            android:text="Series"
+            android:textColor="#bc1f1f" />
+
+
+                <com.apdallahy3.marvelcharcters.Views.HorizontalListView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:widget="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                    android:layout_height="175dip"
+                    android:divider="@color/colorAccent"
+                    widget:dividerWidth="1dp"
+                    android:id="@+id/series_list_view"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:text="Events"
+            android:textColor="#bc1f1f"
+            android:layout_marginTop="16dip"
+            android:layout_marginLeft="10dip"
+            />
+
+
+                <com.apdallahy3.marvelcharcters.Views.HorizontalListView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:widget="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="match_parent"
+                     widget:dividerWidth="2dp"
+                    android:layout_height="175dip"
+                    android:divider="@color/colorAccent"
+                     android:id="@+id/events_list_view"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/details_url"
+            android:layout_marginTop="16dip"
+            android:layout_marginLeft="10dip"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:layout_alignParentLeft="true"
+                android:textColor="#ffffff"
+
+                />
+            <ImageView
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_go"
+
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/wiki_url"
+            android:layout_marginTop="16dip"
+            android:layout_marginLeft="10dip"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wiki"
+                android:layout_alignParentLeft="true"
+                android:textColor="#ffffff"
+
+                />
+            <ImageView
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_go"
+
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/comic_url"
+            android:layout_marginTop="16dip"
+            android:layout_marginLeft="10dip"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ComicLink"
+                android:layout_alignParentLeft="true"
+                android:textColor="#ffffff"
+
+                />
+            <ImageView
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_go"
+
+                />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
