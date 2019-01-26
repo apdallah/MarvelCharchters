@@ -55,7 +55,7 @@ public class FragmentAllCharacters extends Fragment implements OnDataLoaded {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_all_charcters, container, false);
 
-        //init UI
+             //init UI
              charchtersListView=(ListView)view.findViewById(R.id.charcters_list_view);
              charactersAdapter=new CharactersAdapter(getActivity());
              charchtersListView.setAdapter(charactersAdapter);
@@ -76,16 +76,9 @@ public class FragmentAllCharacters extends Fragment implements OnDataLoaded {
                         {
                             //to avoid multiple calls for last item
                              preLast = lastItem;
-                             //check internet connection otherwise get from database
-                            if(Controller.getContollerInstance().isNetworkConnected(getActivity())){
-                                //calling async task with on dataloaded listener and context and offset paramter
-                                new CharactersTask(FragmentAllCharacters.this,getActivity()).execute(""+charactersAdapter.getCount());
-                            }else{
-                                //getting data from database sending offset paramter
-                                ArrayList<ChracterItem> dbItems=ChractersDbHelper.getChractersDbHelperInstance(getActivity()).getAllCharacters(charactersAdapter.getCount());
-                                charactersAdapter.setChracterItemArrayList(dbItems);
-                                charactersAdapter.notifyDataSetChanged();
-                            }
+                             //Load More Data
+                            Controller.getContollerInstance().loadCharactersData(getActivity(),FragmentAllCharacters.this,charactersAdapter.getCount());
+
 
                         }
                     }
@@ -99,16 +92,8 @@ public class FragmentAllCharacters extends Fragment implements OnDataLoaded {
                     getActivity().startActivity(intent);
                 }
             });
-            //check if there is internet connection
-             if(Controller.getContollerInstance().isNetworkConnected(getActivity())){
-                 //loading data for the first time in application using offeset 0
-                 new CharactersTask(this,getActivity()).execute("0");
-             }else{
-                //if there is not internet connection get data from database
-                 ArrayList<ChracterItem> dbItems=ChractersDbHelper.getChractersDbHelperInstance(getActivity()).getAllCharacters(0);
-                  charactersAdapter.setChracterItemArrayList(dbItems);
-                 charactersAdapter.notifyDataSetChanged();
-             }
+            //Load Characters Data
+            Controller.getContollerInstance().loadCharactersData(getActivity(),this,0);
         return view;
     }
 
@@ -143,13 +128,12 @@ public class FragmentAllCharacters extends Fragment implements OnDataLoaded {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    Log.i("well", " Search for :"+newText);
-                    return false;
+
+                     return false;
                 }
             });
         }
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_search) {
+         if (id == R.id.action_search) {
 
             return true;
         }
@@ -157,15 +141,17 @@ public class FragmentAllCharacters extends Fragment implements OnDataLoaded {
         return super.onOptionsItemSelected(item);
     }
     @Override
-    public void onDataLoaded(ArrayList<ChracterItem> loadedItems) {
+    public void onDataLoaded(ArrayList<ChracterItem> loadedItems,boolean cacheFlag) {
         if(loadedItems.size()>0) {
             //set list to adapter after loading data
             charactersAdapter.setChracterItemArrayList(loadedItems);
             charactersAdapter.notifyDataSetChanged();
             //caching items to database if they are not already exists
-            for(int i=0;i<loadedItems.size();i++){
-                if(!ChractersDbHelper.getChractersDbHelperInstance(getActivity()).isExist(loadedItems.get(i).getId()))
-                     ChractersDbHelper.getChractersDbHelperInstance(getActivity()).addCharacter(loadedItems.get(i));
+            if (cacheFlag){
+                for (int i = 0; i < loadedItems.size(); i++) {
+                    if (!ChractersDbHelper.getChractersDbHelperInstance(getActivity()).isExist(loadedItems.get(i).getId()))
+                        ChractersDbHelper.getChractersDbHelperInstance(getActivity()).addCharacter(loadedItems.get(i));
+                }
             }
         }
     }

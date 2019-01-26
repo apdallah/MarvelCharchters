@@ -13,6 +13,8 @@ import android.util.Log;
 import com.apdallahy3.marvelcharcters.DataBase.ChractersDbHelper;
 import com.apdallahy3.marvelcharcters.Models.ChracterItem;
 import com.apdallahy3.marvelcharcters.Models.Item;
+import com.apdallahy3.marvelcharcters.Views.AsanycTasks.CharactersTask;
+import com.apdallahy3.marvelcharcters.Views.Interfaces.OnDataLoaded;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,21 @@ public class Controller {
         }
         return mController;
     }
-    public ArrayList<ChracterItem> getCharctersFromJson(String characterJsonString,Context context) {
+    //Loading characters Data
+    public ArrayList<ChracterItem> loadCharactersData(Activity context, OnDataLoaded onDataLoaded,int offset){
+        ArrayList<ChracterItem> charactersItems = new ArrayList<ChracterItem>();
+        //check if there is internet connection
+        if(isNetworkConnected(context)){
+            //loading data using offeset 0
+            new CharactersTask(onDataLoaded,context).execute(""+offset);
+        }else{
+            //if there is not internet connection get data from database
+            ArrayList<ChracterItem> dbItems=ChractersDbHelper.getChractersDbHelperInstance(context).getAllCharacters(offset);
+             onDataLoaded.onDataLoaded(dbItems,false);
+        }
+        return charactersItems;
+    }
+    public ArrayList<ChracterItem> getCharctersFromJson(String characterJsonString) {
         ArrayList<ChracterItem> charactersItems = new ArrayList<ChracterItem>();
         try {
             //convert string to json object

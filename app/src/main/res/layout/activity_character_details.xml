@@ -53,12 +53,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.25"
+            android:layout_weight="0.3"
             android:id="@+id/character_description"
             android:layout_marginTop="5dip"
             android:text="Description dafsdg gsdga"
             android:textColor="#ffffff"
             android:layout_marginLeft="10dip"
+
             />
 
         <TextView

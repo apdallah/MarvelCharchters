@@ -102,7 +102,7 @@ public class CharactersTask extends AsyncTask<String,Void,ArrayList<ChracterItem
             }
                 //convert json string to list of characters items if json string not empty
             if (charactersJSonString != null && !charactersJSonString.isEmpty())
-                return Controller.getContollerInstance().getCharctersFromJson(charactersJSonString,context);
+                return Controller.getContollerInstance().getCharctersFromJson(charactersJSonString);
             else
                 return new ArrayList<ChracterItem>();
 
@@ -118,7 +118,7 @@ public class CharactersTask extends AsyncTask<String,Void,ArrayList<ChracterItem
 
             }
         });
-             onDataLoadedInstance.onDataLoaded(chracterItems);
+             onDataLoadedInstance.onDataLoaded(chracterItems,true);
 
         super.onPostExecute(chracterItems);
     }

@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.apdallahy3.marvelcharcters.Models.ChracterItem;
 import com.apdallahy3.marvelcharcters.Models.Item;
+import com.apdallahy3.marvelcharcters.Views.Interfaces.OnDataLoaded;
 
 import java.util.ArrayList;
 
